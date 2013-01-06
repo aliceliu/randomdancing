@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>RANDOM DANCING</title>
+    <style>
+      h1 {
+          text-align: center;
+      }
+      
+      p {
+          text-align: center;
+      }
+      
+      #goal {
+          text-align: center;
+      }
+      
+      #pplist {
+          visibility: hidden;
+      }
+      
+      
+
+      
+    </style>
+    <script>
+        function $(id) {
+            'use strict';
+            if (typeof id != 'undefined') {
+                return document.getElementById(id);
+                }
+        };
+        
+        
+        
+        function addPlaylist() {
+            if ($('plist').value == 'own') {
+            	$('pplist').style.visibility="visible";
+            }
+            else {
+                $('pplist').style.visibility="hidden";
+            }
+        };
+       
+            	
+        function insertVideo() {
+            alert('RANDOM DANCING!!!');
+            var plist = $('plist').value;
+            if (plist == 'default') {
+            	html = '<center><object id="vid" width="560" height="315"><param name="movie" value="https://www.youtube.com/v/BVnKyQIx4bA?hl=en_US&amp;version=3&loop=1&playlist=rkc62sOdmDk&autoplay=1"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="https://www.youtube.com/v/BVnKyQIx4bA?hl=en_US&amp;version=3&loop=1&playlist=rkc62sOdmDk&autoplay=1" type="application/x-shockwave-flash" width="560" height="315" allowscriptaccess="always" allowfullscreen="true"></embed></object></center>';
+            	$('empty').innerHTML = html;
+            }
+            
+            var duration = parseInt($('duration').value) * 60 * 1000; 
+            
+            
+            setTimeout('removeVideo()', duration);
+            return false;
+        };
+        
+        function removeVideo() {
+            $('empty').innerHTML = '<p>Waiting...</p>';
+            randomInsert();
+            //return false;
+        };
+            
+        function randomInsert() {
+            var freq = $('freq').value;
+            if (freq == 'frequently') {
+                interval = Math.random() * 60 * 60 * 1000;
+            }
+            else if (freq == 'occasionally') {
+                interval = Math.random() * 60 * 60 * 1000 * 2;
+            }
+            else {
+                interval = Math.random() * 60 * 60 * 1000 * 3;
+            }
+            
+            setTimeout('insertVideo()', interval);
+               
+        };
+        
+        
+        function init() {
+            $('theForm').onsubmit = function() {
+            	insertVideo();
+            	return false
+            }
+            var duration = parseInt($('duration').value) * 60 * 1000;
+            setTimeout('randomInsert()', duration);
+        };
+        
+        window.onload = init;
+    </script>
+</head>
+<body>
+    <h1>RANDOM DANCING</h1>
+    <p id="goal">This webapp was made to get my (and hopefully your) lazy bum off that chair for a few minutes</p>
+    <form action="/" id="theForm">
+        <p> Choose how often you will dance:
+        <select id="freq">
+            <option value="frequently">Frequently</option>
+            <option value="occasionally">Occasionally</option>
+            <option value="rarely">Rarely</option>
+        </select>
+        Choose how long it will last:
+        <select id="duration">
+            <option value="1">1 Min</option>
+            <option value="5">5 Min</option>
+            <option value="10">10 Min</option>
+            <option value="15">15 Min</option> 
+            <option value="30">30 Min</option> 
+        </select>
+        Choose playlist:
+        <select id="plist" onchange="addPlaylist()">
+            <option value="default">Default</option>
+            <!--<option value="own">Make my own</option>-->
+        </select></p>
+        
+        <div id="pplist" align="center">
+        	<input type="text" id="song">
+        	<button type="button" id="add">Add song</button>
+        	<div id="songs"></div>
+        </div>
+        
+        <div align="center">
+            <input type="submit" value="Go!" id="submit">
+        </div>
+        <id id="empty"></div>
+    
+    </form>
+
+
+    
+    
+    
+
+</body>
+</html>
