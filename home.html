@@ -15,7 +15,7 @@
           text-align: center;
       }
       
-      #back {
+      body {
           background-image: url('http://www.pptback.com/uploads/3d-dance-party-backgrounds-powerpoint.jpg');
           width: 1500px;
           height: 725px;
@@ -37,7 +37,6 @@
   
 </head>
 <body>
-    <div id="back">
     <h1>RANDOM DANCING</h1>
     <p id="goal">This webapp was made to get my (and hopefully your) lazy bum off that chair for a few minutes</p>
     <form action="/" id="theForm">
@@ -63,7 +62,7 @@
             <option value="hip hop">Hip hop</option>
             <option value="jazz">Jazz</option>
             <option value="pop">Pop</option>
-            <option vlaue="rock">Rock</option>
+            <option value="rock">Rock</option>
             <option value="swing">Swing</option>
             <option value="own">Custom</option>
         </select></p>
@@ -83,7 +82,7 @@
     <div id="empty"><p>Waiting...Now go back to work!</p></div>
     <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
     <div id="player"></div> 
-    </div>
+
 
 
     
@@ -137,8 +136,7 @@
                     event.target.playVideo();
                 }
                 else {
-                	event.target.setShuffle(true);
-                	event.target.setLoop(true);
+                	
                 }
             }
         };
@@ -168,7 +166,7 @@
             else if (plist != 'own') {
                 i = parseInt(Math.random()* 2 * 50);
                 player.loadPlaylist({'list':list_ids[plist],'listType':"playlist", 'index': i});
-                setTimeout('player.nextVideo()', 500);
+                setTimeout('player.nextVideo()', 1000);
                 
                 
             }
@@ -180,13 +178,15 @@
                 }
                 else {
                     player.loadPlaylist({'list':id,'listType':"playlist"});
-                    //setTimeout('player.nextVideo()', 500);
+                    setTimeout('player.nextVideo()', 500);
                 }
             }
             
             $('#player').show();
             
-            setTimeout('player.playVideo()', 500);
+            setTimeout('player.playVideo()', 1000);
+            setTimeout('player.setShuffle(true)', 1000);
+            setTimeout('player.setLoop(true)', 1000);
             var duration = parseInt($('#duration').val()) * 60 * 1000; 
             setTimeout('removeVideo()', duration);
             
