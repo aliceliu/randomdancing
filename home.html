@@ -12,6 +12,11 @@
           text-align: center;
       }
       
+      a {
+          margin-right: 10px;
+          margin-left: 10px;
+      }
+      
       #goal {
           text-align: center;
           font-size: medium;
@@ -36,6 +41,13 @@
       #player {
           width: 700px ;
           margin-left: 400px;
+      }
+      #foot {
+          position: relative;
+          top: 400px;
+      }
+      a {
+          text-align: center;
       }
     </style>
   
@@ -89,6 +101,14 @@
     <div id="empty"><p>Waiting...Now go back to work!</p></div>
     <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
     <div id="player"></div> 
+    <div id="foot">
+    	<p>If you liked this app, check out <a href="http://www.random-karaoke.appspot.com/">RANDOM KARAOKE</a></p>
+    	<p>Website made by: Alice Liu</p>
+    	<p><a href="https://github.com/aliceliu/randomdancing">Github</a>
+    	<a href="http://www.linkedin.com/profile/view?id=133805419">LinkedIn</a>
+    	<a href="https://www.facebook.com/alice.j.liu">Facebook</a></p>
+    </div>
+    
 
 
 
@@ -253,5 +273,7 @@
         
         $(document).ready(Main);
     </script>
+    
 </body>
+
 </html>
