@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>RANDOM DANCING</title>
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet" media="screen">
     <style>
       h1 {
           text-align: center;
@@ -13,6 +14,9 @@
       
       #goal {
           text-align: center;
+          font-size: medium;
+          font-style: italic;
+          margin: 25px;
       }
       
       body {
@@ -21,13 +25,13 @@
           height: 725px;
       }
       #cplist {
-          width: 160px;
+          width: 200px;
       }
       #theForm {
           text-align: center;
       }
       #submit {
-          margin: 20px;
+          margin: 10px;
       }
       #player {
           width: 700px ;
@@ -59,8 +63,10 @@
             <option value="default">Default</option>
             <option value="bollywood">Bollywood</option>
             <option value="disco">Disco</option>
+            <option value="flamenco">Flamenco</option>
             <option value="hip hop">Hip hop</option>
             <option value="jazz">Jazz</option>
+            <option value="latin">Latin</option>
             <option value="pop">Pop</option>
             <option value="rock">Rock</option>
             <option value="swing">Swing</option>
@@ -73,7 +79,7 @@
         
         
         <div id="submit">
-        <input type="submit" value="Let's do this!">
+        <input type="submit" class="btn" value="Let's do this!">
         </div>
 
         
@@ -149,8 +155,10 @@
             var plist = $('#plist').val();
             var list_ids = {'bollywood':'PLCD0BBCF0821C9084',
             				'disco':'PL087B0B2BA3520EF4',
+            				'flamenco':'PL2BEAB0133DD1A929',
             				'hip hop':'PLCD91C77946560CFD',
                             'jazz':'PL7DA74A88ACF6C8B0',
+                            'latin':'PL1B50B0F5174519A3',
                             'pop':'PL701D31181FAACD81',
                             'rock':'PL311713A5391C34C2',
                             'swing':'PL844609266786C946'
