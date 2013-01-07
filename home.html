@@ -70,6 +70,7 @@
             <option value="pop">Pop</option>
             <option value="rock">Rock</option>
             <option value="swing">Swing</option>
+            <option value="random">Random</option>
             <option value="own">Custom</option>
         </select></p>
         
@@ -170,9 +171,20 @@
                 
                 
             }
+            else if (plist == 'random') {
+                var ids = []
+                i = Math.floor(Math.random()*50);
+                for (list in list_ids) {
+                    ids.push(list_ids[list]);
+                }
+            	rlist = ids[Math.floor(Math.random()*ids.length)];
+            	player.loadPlaylist({'list':rlist,'listType':"playlist", 'index': i});
+                setTimeout('player.nextVideo()', 1000);
+                    
+            }
             
             else if (plist != 'own') {
-                i = parseInt(Math.random()* 2 * 50);
+                i = Math.floor(Math.random()*50);
                 player.loadPlaylist({'list':list_ids[plist],'listType':"playlist", 'index': i});
                 setTimeout('player.nextVideo()', 1000);
                 
