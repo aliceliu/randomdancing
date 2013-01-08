@@ -42,12 +42,12 @@
           width: 700px ;
           margin-left: 400px;
       }
+      #empty {
+          margin-bottom: 300px;
+      }
       #foot {
           position: relative;
           top: 400px;
-      }
-      a {
-          text-align: center;
       }
     </style>
   
@@ -162,9 +162,6 @@
                 if ($('#plist').val() == 'default') {
                     event.target.playVideo();
                 }
-                else {
-                	
-                }
             }
         };
         
@@ -187,7 +184,7 @@
                             };
                            
             if (plist == 'default') {
-                player.loadVideoById({'videoId': "BVnKyQIx4bA"});
+                player.loadVideoById({'videoId': "dQw4w9WgXcQ"});  //BVnKyQIx4bA
                 
                 
             }
@@ -217,14 +214,20 @@
                     alert('Please input a Youtube playlist ID');
                 }
                 else {
-                    player.loadPlaylist({'list':id,'listType':"playlist"});
-                    setTimeout('player.nextVideo()', 500);
+                    i = Math.floor(Math.random()*50);
+                    player.loadPlaylist({'list':id,'listType':"playlist", 'index': i});
+                    setTimeout('player.nextVideo()', 1000);
                 }
             }
             
-            $('#player').show();
+            $('#player').show(function(){
             
-            setTimeout('player.playVideo()', 1000);
+            	$('#foot').css('top', '50px');
+           		player.playVideo();
+            
+            });
+            
+            
             setTimeout('player.setShuffle(true)', 1000);
             setTimeout('player.setLoop(true)', 1000);
             var duration = parseInt($('#duration').val()) * 60 * 1000; 
