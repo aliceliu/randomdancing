@@ -26,8 +26,8 @@
       
       body {
           background-image: url('http://www.pptback.com/uploads/3d-dance-party-backgrounds-powerpoint.jpg');
-          width: 1500px;
-          height: 725px;
+          width: 100%;
+          height: 100%;
       }
       #cplist {
           width: 200px;
@@ -39,8 +39,8 @@
           margin: 10px;
       }
       #player {
-          width: 700px ;
-          margin-left: 400px;
+          width: 700px;
+          padding-left: 450px;
       }
       #empty {
           margin-bottom: 300px;
@@ -104,9 +104,9 @@
     <div id="foot">
     	<p>If you liked this app, check out <a href="http://www.random-karaoke.appspot.com/">RANDOM KARAOKE</a></p>
     	<p>Website made by: Alice Liu</p>
-    	<p><a href="https://github.com/aliceliu/randomdancing">Github</a>
-    	<a href="http://www.linkedin.com/profile/view?id=133805419">LinkedIn</a>
-    	<a href="https://www.facebook.com/alice.j.liu">Facebook</a></p>
+    	<p><a href="https://github.com/aliceliu/randomdancing" target="_blank">Github</a>
+    	<a href="http://www.linkedin.com/profile/view?id=133805419" target="_blank">LinkedIn</a>
+    	<a href="https://www.facebook.com/alice.j.liu" target="_blank">Facebook</a></p>
     </div>
     
 
@@ -146,11 +146,20 @@
                 'onStateChange': onPlayerStateChange
                 }
             });
+            
+            
         }
 
         // 4. The API will call this function when the video player is ready.
         function onPlayerReady(event) {
-            event.target.playVideo();
+            $('#theForm').submit(function() {
+                insertVideo();
+                return false
+            });
+            
+            var duration = parseInt($('#duration').value) * 60 * 1000;
+            setTimeout('randomInsert()', duration);
+            
         }
 
         // 5. The API calls this function when the player's state changes.
@@ -160,7 +169,7 @@
         function onPlayerStateChange(event) {
             if (!event.data == YT.PlayerState.PLAYING) {
                 if ($('#plist').val() == 'default') {
-                    event.target.playVideo();
+                    event.target.playVideo(); //loops default
                 }
             }
         };
@@ -172,7 +181,7 @@
             alert('RANDOM DANCING!!!');
             var plist = $('#plist').val();
             var list_ids = {'bollywood':'PLCD0BBCF0821C9084',
-            				'disco':'PL087B0B2BA3520EF4',
+            				'disco':'PLAAD9DCDDCB26CFB9', 
             				'flamenco':'PL2BEAB0133DD1A929',
             				'hip hop':'PLCD91C77946560CFD',
                             'jazz':'PL7DA74A88ACF6C8B0',
@@ -182,30 +191,28 @@
                             'swing':'PL844609266786C946'
                            
                             };
-                           
+                            
+            i = Math.floor(Math.random()*50); //random index
+            
             if (plist == 'default') {
-                player.loadVideoById({'videoId': "dQw4w9WgXcQ"});  //BVnKyQIx4bA
+                player.loadVideoById({'videoId': "dQw4w9WgXcQ"});  //Rickroll!
                 
                 
             }
+            
             else if (plist == 'random') {
                 var ids = []
-                i = Math.floor(Math.random()*50);
                 for (list in list_ids) {
                     ids.push(list_ids[list]);
                 }
             	rlist = ids[Math.floor(Math.random()*ids.length)];
             	player.loadPlaylist({'list':rlist,'listType':"playlist", 'index': i});
-                setTimeout('player.nextVideo()', 1000);
-                    
+                setTimeout('player.nextVideo()', 1000);       
             }
             
             else if (plist != 'own') {
-                i = Math.floor(Math.random()*50);
                 player.loadPlaylist({'list':list_ids[plist],'listType':"playlist", 'index': i});
                 setTimeout('player.nextVideo()', 1000);
-                
-                
             }
             
             else {
@@ -214,14 +221,12 @@
                     alert('Please input a Youtube playlist ID');
                 }
                 else {
-                    i = Math.floor(Math.random()*50);
                     player.loadPlaylist({'list':id,'listType':"playlist", 'index': i});
                     setTimeout('player.nextVideo()', 1000);
                 }
             }
             
             $('#player').show(function(){
-            
             	$('#foot').css('top', '50px');
            		player.playVideo();
             
@@ -265,13 +270,7 @@
             $('#player').hide();
             $('#pplist').hide();
             $('#empty').hide();
-            $('#theForm').submit(function() {
-                insertVideo();
-                return false
-            });
             
-            var duration = parseInt($('#duration').value) * 60 * 1000;
-            setTimeout('randomInsert()', duration);
         };
         
         $(document).ready(Main);
