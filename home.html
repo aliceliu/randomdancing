@@ -4,11 +4,7 @@
     <title>RANDOM DANCING</title>
     <link href="/static/css/bootstrap.min.css" rel="stylesheet" media="screen">
     <style>
-      h1 {
-          text-align: center;
-      }
-      
-      p {
+      h1, p {
           text-align: center;
       }
       
@@ -16,7 +12,11 @@
           margin-right: 10px;
           margin-left: 10px;
       }
-      
+      #like {
+          position: relative;
+          left: 1000px;
+          top: 10px;
+      }
       #goal {
           text-align: center;
           font-size: medium;
@@ -38,10 +38,6 @@
       #submit {
           margin: 10px;
       }
-      #player {
-          width: 700px;
-          padding-left: 450px;
-      }
       #empty {
           margin-bottom: 300px;
       }
@@ -53,16 +49,17 @@
   
 </head>
 <body>
+    <iframe id="like" src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2Frandom-dancing.appspot.com%2F&amp;send=false&amp;layout=standard&amp;width=450&amp;show_faces=true&amp;font&amp;colorscheme=light&amp;action=like&amp;height=80" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:20px;" allowTransparency="true"></iframe>
     <h1>RANDOM DANCING</h1>
     <p id="goal">This webapp was made to get my (and hopefully your) lazy bum off that chair for a few minutes</p>
     <form action="/" id="theForm">
-        <p> Choose how often you will dance for:
+        <p>How often you will dance for:
         <select id="freq">
             <option value="frequently">Frequently</option>
             <option value="occasionally">Occasionally</option>
             <option value="rarely">Rarely</option>
         </select>
-        Choose how long it will last:
+        How long it will last:
         <select id="duration">
             <option value="1">1 Min</option>
             <option value="5">5 Min</option>
@@ -70,7 +67,7 @@
             <option value="15">15 Min</option> 
             <option value="30">30 Min</option> 
         </select>
-        Choose playlist:
+        Playlist:
         <select id="plist" onchange="addPlaylist()">
             <option value="default">Default</option>
             <option value="bollywood">Bollywood</option>
@@ -100,9 +97,10 @@
     </form>
     <div id="empty"><p>Waiting...Now go back to work!</p></div>
     <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
-    <div id="player"></div> 
+    <center><div id="player"></div></center>
+    
     <div id="foot">
-    	<p>If you liked this app, check out <a href="http://www.random-karaoke.appspot.com/">RANDOM KARAOKE</a></p>
+    	<p>If you liked this app, check out <a href="http://www.random-karaoke.appspot.com/" target="_blank">RANDOM KARAOKE</a></p>
     	<p>Website made by: Alice Liu</p>
     	<p><a href="https://github.com/aliceliu/randomdancing" target="_blank">Github</a>
     	<a href="http://www.linkedin.com/profile/view?id=133805419" target="_blank">LinkedIn</a>
@@ -195,9 +193,7 @@
             i = Math.floor(Math.random()*50); //random index
             
             if (plist == 'default') {
-                player.loadVideoById({'videoId': "dQw4w9WgXcQ"});  //Rickroll!
-                
-                
+                player.loadVideoById({'videoId': "dQw4w9WgXcQ"});  //Rickroll!    
             }
             
             else if (plist == 'random') {
